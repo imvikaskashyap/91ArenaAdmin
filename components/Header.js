@@ -1,8 +1,18 @@
-import { AlignJustify, Bell, CircleUserRound, Maximize, Minimize } from "lucide-react";
+import {
+  AlignJustify,
+  Bell,
+  CircleUserRound,
+  Maximize,
+  Minimize,
+} from "lucide-react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 import React, { useState } from "react";
 
 const Header = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const { data: session } = useSession();
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -28,12 +38,26 @@ const Header = () => {
           </div>
         </div>
         <div className="flex gap-2">
-          <div className="cursor-pointer" onClick={toggleFullScreen}>{isFullScreen ? <Minimize /> : <Maximize />}</div>
-          <div className="cursor-pointer" >
+          <div className="cursor-pointer" onClick={toggleFullScreen}>
+            {isFullScreen ? <Minimize /> : <Maximize />}
+          </div>
+          <div className="cursor-pointer">
             <Bell />
           </div>
-          <div className="cursor-pointer" >
-            <CircleUserRound />
+          <div className="cursor-pointer">
+            {session ? (
+              <div className="w-9 h-9 rounded-full overflow-hidden">
+                <Image
+                  src={session.user.image}
+                  width={32}
+                  height={32}
+                  alt="user"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            ) : (
+              <CircleUserRound />
+            )}
           </div>
         </div>
       </header>

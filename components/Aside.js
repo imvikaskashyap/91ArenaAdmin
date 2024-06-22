@@ -43,7 +43,7 @@ const Aside = () => {
             </div>{" "}
           </li>
         </Link>
-        <Link href="/blog">
+        <Link href="/blogs">
           <li
             className={`${
               activeLink === "/blogs" ? "bg-purple-700 text-white" : ""
@@ -56,7 +56,7 @@ const Aside = () => {
             </div>
           </li>
         </Link>
-        <Link href="/blog/add-blog">
+        <Link href="/blogs/add-blog">
           <li
             className={`${
               activeLink === "/blog/add-blog" ? "bg-purple-700 text-white" : ""
