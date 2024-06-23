@@ -1,3 +1,5 @@
+import Blog from "@/components/Blog";
+import { Loader } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -16,7 +18,7 @@ const AddBlog = () => {
   if (status === "loading") {
     return (
       <div>
-        <Loading />
+        <Loader />
       </div>
     );
   }
@@ -24,6 +26,7 @@ const AddBlog = () => {
   return (
     <div className="p-28">
       <h1>Add Blog</h1>
+      <Blog/>
     </div>
   );
 };

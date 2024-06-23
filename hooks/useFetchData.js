@@ -24,18 +24,18 @@
                 setAllData(allData)
                 setLoading(false); // set loading state to false after data is fetched
             }catch(error){
-                console.log('Error fetching blof data', error)
-                setLoading(fals)
+                console.log('Error fetching blog data', error)
+                setLoading(false)
             }
         }
-    })
+        // fetch blog data only if API endpoint is exist
+        if(apiEndPoint){
+            fetchAllData()
+        }
+    },[initialLoad, apiEndPoint]) // depends on initialLoad and API endpoint to trigger api call
 
 
-   return (
-     <div>
-       
-     </div>
-   )
+   return {allData, loading}
  }
  
  export default useFetchData
